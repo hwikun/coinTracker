@@ -1,11 +1,10 @@
 import { useParams, useLocation, Routes, Route } from 'react-router';
 import { Link, useMatch } from 'react-router-dom';
-
 import styled from 'styled-components';
-import Chart from './Chart';
-import Price from './Price';
 import { useQuery } from 'react-query';
 import { fetchCoinInfo, fetchCoinTickers } from '../api';
+import Price from './Price';
+import Chart from './Chart';
 
 const Title = styled.h1`
 	font-size: 48px;
@@ -189,15 +188,15 @@ function Coin() {
 					</Overview>
 					<Tabs>
 						<Tab isActive={chartMatch !== null}>
-							<Link to={`/${coinId}/chart`}>Chart</Link>
+							<Link to='chart'>Chart</Link>
 						</Tab>
 						<Tab isActive={priceMatch !== null}>
-							<Link to={`/${coinId}/Price`}>Price</Link>
+							<Link to='price'>Price</Link>
 						</Tab>
 					</Tabs>
 					<Routes>
-						<Route path={`/:coinId/price`} element={<Price />}></Route>
-						<Route path={`/:coinId/chart`} element={<Chart />}></Route>
+						<Route path='chart' element={<Chart coinId={coinId!} />}></Route>
+						<Route path='price' element={<Price />}></Route>
 					</Routes>
 				</>
 			)}
