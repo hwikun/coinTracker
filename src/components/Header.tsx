@@ -32,9 +32,7 @@ function Header({ title }: IHeader) {
 	return (
 		<Wraper>
 			<BackBtn>
-				{pathname !== '/coinTracker' ? (
-					<Link to={'/coinTracker'}>홈으로</Link>
-				) : null}
+				{pathname !== '/' ? <Link to={'/'}>홈으로</Link> : null}
 			</BackBtn>
 			<Title>{title}</Title>
 			<Toggle onClick={toggleDark} />

@@ -25,7 +25,6 @@ function Chart({ coinId }: ChartProps) {
 		() => fetchCoinHistory(coinId),
 		{ refetchInterval: 10000 },
 	);
-	console.log(data);
 	return (
 		<>
 			{isLoading ? (
