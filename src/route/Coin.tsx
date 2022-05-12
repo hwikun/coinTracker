@@ -6,11 +6,7 @@ import { fetchCoinInfo, fetchCoinTickers } from '../api';
 import Price from './Price';
 import Chart from './Chart';
 import { Helmet } from 'react-helmet';
-
-const Title = styled.h1`
-	font-size: 48px;
-	color: ${(props) => props.theme.accentColor};
-`;
+import Header from '../components/Header';
 
 const Overview = styled.div`
 	display: flex;
@@ -44,13 +40,6 @@ const Container = styled.div`
 	padding: 0px 20px;
 	max-width: 480px;
 	margin: 0 auto;
-`;
-
-const Header = styled.header`
-	height: 15vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 `;
 
 const Tabs = styled.div`
@@ -151,19 +140,18 @@ function Coin() {
 	);
 
 	const loading = infoLoading || tickersLoading;
+	const title = state?.name
+		? state?.name
+		: loading
+		? 'Loading...'
+		: infoData?.name;
 
 	return (
 		<Container>
 			<Helmet>
-				<title>
-					{state?.name ? state?.name : loading ? 'Loading...' : infoData?.name}
-				</title>
+				<title>{title}</title>
 			</Helmet>
-			<Header>
-				<Title>
-					{state?.name ? state?.name : loading ? 'Loading...' : infoData?.name}
-				</Title>
-			</Header>
+			<Header title={title!} />
 			{loading ? (
 				<Loader>Loading...</Loader>
 			) : (
